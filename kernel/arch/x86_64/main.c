@@ -48,12 +48,6 @@ void generic_fatal(void)
 		asm("hlt");
 }
 
-void test()
-{
-	printf("IRQ!\n");
-	lapic_eoi();
-}
-
 void kmain(void *mboot_info, uint32_t mboot_magic)
 {
 	vga_clear();
@@ -75,11 +69,6 @@ void kmain(void *mboot_info, uint32_t mboot_magic)
 	acpi_install();
 	lapic_install();
 	ioapic_install();
-
-	irq_register(0, test);
-
-	for (;;)
-		;
 
 	printf("Welcome to netwide v%d.%d (%s %s %s)!\n",
 		   __kernel_version_major, __kernel_version_minor,

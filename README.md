@@ -12,4 +12,5 @@ New netwide OS (i rewriting)
 3. Serial driver
 4. VGA driver
 5. ACPI
-6. Very basic RISC-V port
+6. LAPIC
+7. Basic RISC-V port

@@ -92,5 +92,5 @@ __attribute__((no_sanitize("undefined"))) void lapic_install(void)
     mmu_map((uintptr_t)VIRTUAL(LAPIC_REGS), LAPIC_REGS, PTE_PRESENT | PTE_WRITABLE);
     lapic_write(LAPIC_SIV, lapic_read(LAPIC_SIV) | 0x100);
 
-    dprintf("%s:%d: initialized CPU #0 Local APIC\n", __FILE__, __LINE__);
+    printf("\033[92m * \033[97mInitialized CPU #0 Local APIC\033[0m\n");
 }

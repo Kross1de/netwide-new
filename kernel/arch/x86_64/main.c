@@ -49,6 +49,11 @@ void generic_fatal(void)
 		asm("hlt");
 }
 
+void generic_pause(void)
+{
+	__builtin_ia32_pause();
+}
+
 void kmain(void *mboot_info, uint32_t mboot_magic)
 {
 	vga_clear();

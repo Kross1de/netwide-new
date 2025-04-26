@@ -26,7 +26,9 @@ Then, you can run `make run` and the kernel will run in QEMU.
 # TODO
 - [ ] `panic()` function
 - [ ] ANSI support in the VGA driver
-- [ ] Write a scheduler
+- [X] Write a scheduler
+    - [X] - Mutexes
+    - [ ] - Semaphores 
 - [ ] Write a VFS
 - [X] FADT cleanup
 - [ ] PCI driver

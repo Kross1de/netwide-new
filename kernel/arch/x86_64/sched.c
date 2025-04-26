@@ -35,7 +35,7 @@ __attribute__((no_sanitize("undefined"))) struct task *sched_new_task(void *entr
     proc->ctx.rdi = 0;
     proc->ctx.rsi = 0;
     proc->ctx.rbp = 0;
-    proc->ctx.rsp = (uint64_t)stack + (4 * PAGE_SIZE) - 4;
+    proc->ctx.rsp = (uint64_t)stack + (4 * PAGE_SIZE) - 8;
     proc->ctx.rbx = 0;
     proc->ctx.rdx = 0;
     proc->ctx.rcx = 0;
@@ -170,8 +170,6 @@ void sched_idle(void)
 
 static void uptime_task(void)
 {
-    printf("\n");
-
     int hours = 0, minutes = 0, seconds = 0;
     for (;;)
     {
@@ -185,6 +183,7 @@ static void uptime_task(void)
             minutes = 0;
             hours++;
         }
+
         printf("\rUptime: %dh, %dmin, %ds", hours, minutes, seconds++);
         sched_sleep(1000);
     }
@@ -201,4 +200,6 @@ void sched_install(void)
 {
     sched_new_task(sched_idle, "System Idle Process");
     sched_new_task(uptime_task, "Uptime Task");
+
+    printf("\033[92m * \033[97mInitialized scheduler\033[0m\n");
 }

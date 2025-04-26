@@ -1,29 +1,45 @@
 # Netwide
-Netwide is a simple 64-BIT operating system for: RISC-V, x86_64 architectures
+Netwide is a 64-bit operating system targeting x86_64 and RISC-V
+
+# Features on x86_64
+- Supports the multiboot2 protocol
+- 4-level paging with 48-bit addressing
+- VGA text mode and serial driver
+- ACPI table parsing
+- LAPIC & IOAPIC support
+- PIT support
+
+# Features on riscv
+- Virtio UART driver
+
+# Building (x86_64)
+To build, you need to install the following packages:
+- dev-essential
+- nasm
+- grub
+- xorriso
+- mtools
+- qemu-system-x86
+
+Then, you can run `make run` and the kernel will run in QEMU.
 
 # TODO
-1. Write a VFS (not completed)
-2. Make framebuffer support (not completed)
-3. Start working for RISC-V architecture (started work)
-
-# FEATURES (x86_64)
-1. multiboot2 support
-2. 4-level paging
-3. VGA, Serial drivers
-4. ACPI table parsing
-5. APIC support
-6. HPET support
-
-# FEATURES (RISC-V)
-1. Virtio UART driver
-
-# Build (x86_64)
-TOOLS NEEDED:
-  dev-essential
-  nasm
-  grub
-  xorriso
-  mtools
-  qemu-system-x86_64
-
-To build and run use 'make run'  
+- [ ] `panic()` function
+- [ ] ANSI support in the VGA driver
+- [ ] Write a scheduler
+- [ ] Write a VFS
+- [X] FADT cleanup
+- [ ] PCI driver
+- [ ] ATAPIO/NVMe driver
+- [ ] Proper ext2 driver
+- [ ] Framebuffer support
+    - [ ] Multiboot2 framebuffer (VBE)
+    - [ ] VMware SVGAII driver
+    - [ ] Framebuffer console
+- [ ] PS/2 drivers
+    - [ ] Keyboard
+    - [ ] Mouse
+- [ ] TSS and ring3
+- [ ] ELF loading using the MMU
+- [ ] Initial filesystem
+- [X] `unimplemented` macro

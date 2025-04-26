@@ -17,7 +17,7 @@ void mutex_lock(mutex_t *m)
 {
     acquire(&(m->lock));
 
-    if (m->owner == current_proc)
+    if (!current_proc || m->owner == current_proc)
     {
         release(&(m->lock));
         return;
@@ -55,7 +55,7 @@ void mutex_unlock(mutex_t *m)
 {
     acquire(&m->lock);
 
-    if (m->owner != current_proc)
+    if (!current_proc || m->owner != current_proc)
     {
         release(&m->lock);
         return;

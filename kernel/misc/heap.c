@@ -25,8 +25,6 @@ __attribute__((no_sanitize("undefined"))) struct heap *heap_create(void)
     h->head->prev = h->head;
     h->head->size = 0;
     h->head->magic = HEAP_MAGIC;
-
-    dprintf("%s:%d: created heap at 0x%lx\n", __FILE__, __LINE__, (uint64_t)h);
     return h;
 }
 
@@ -55,6 +53,11 @@ __attribute__((no_sanitize("undefined"))) void *heap_alloc(struct heap *h, uint6
     uint64_t pages = DIV_CEILING(sizeof(struct heap_block) + n, PAGE_SIZE);
 
     struct heap_block *block = (struct heap_block *)VIRTUAL(mmu_alloc(pages));
+    if (!block)
+    {
+        printf("%s:%d: allocation failed\n", __FILE__, __LINE__);
+        return NULL;
+    }
     mmu_map((uintptr_t)block, (uintptr_t)PHYSICAL(block), PTE_PRESENT | PTE_WRITABLE);
     block->next = h->head;
     block->prev = h->head->prev;

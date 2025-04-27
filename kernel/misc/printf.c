@@ -76,6 +76,18 @@ int vsprintf(char *s, const char *fmt, va_list args)
     return 0;
 }
 
+int sprintf(char *str, const char *fmt, ...)
+{
+    va_list args;
+    va_start(args, fmt);
+    char buf[1024] = {0};
+    int ret = vsprintf(buf, fmt, args);
+    strcpy(str, buf);
+    va_end(args);
+
+    return ret;
+}
+
 int printf(const char *fmt, ...)
 {
     va_list args;

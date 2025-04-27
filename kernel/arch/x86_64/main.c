@@ -7,6 +7,7 @@
 #include <kernel/arch/x86_64/ioapic.h>
 #include <kernel/arch/x86_64/serial.h>
 #include <kernel/mmu.h>
+#include <kernel/pci.h>
 #include <kernel/acpi.h>
 #include <kernel/heap.h>
 #include <kernel/string.h>
@@ -78,6 +79,8 @@ void kmain(void *mboot_info, uint32_t mboot_magic)
 	ioapic_install();
 	lapic_calibrate_timer();
 	sched_install();
+
+	pci_install();
 
 	printf("\nWelcome to \033[96mnetwide\033[0m!\n%s %d.%d %s %s %s\n\n",
 		   __kernel_name, __kernel_version_major, __kernel_version_minor,

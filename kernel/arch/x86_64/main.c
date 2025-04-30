@@ -68,7 +68,7 @@ void kmain(void *mboot_info, uint32_t mboot_magic)
 
 	vga_clear();
 	vga_enable_cursor();
-	printf("\n  \033[97mStarting up \033[94mnetwide (%s)\033[0m\n\n", __kernel_arch);
+	printf("\n  \033[95mStarting up \033[91mnetwide (%s)\033[0m\n\n", __kernel_arch);
 
 	assert(mboot_magic == 0x36d76289);
 	gdt_install();

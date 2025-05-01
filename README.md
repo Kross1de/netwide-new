@@ -24,7 +24,7 @@ To build, you need to install the following packages:
 Then, you can run `make run` and the kernel will run in QEMU.
 
 # TODO
-- [ ] `panic()` function
+- [X] `panic()` function
 - [X] ANSI support in the VGA driver
 - [X] Write a scheduler
     - [X] - Mutexes
@@ -32,6 +32,7 @@ Then, you can run `make run` and the kernel will run in QEMU.
 - [X] Write a VFS
 - [X] FADT cleanup
 - [x] PCI
+- [X] SMP 
 - [ ] ATAPIO/NVMe driver
 - [ ] Proper ext2 driver
 - [ ] Framebuffer support

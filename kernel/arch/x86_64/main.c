@@ -21,64 +21,62 @@
 extern void generic_startup(void);
 extern void generic_main(void);
 
-void *mboot2_find_next(char *current, uint32_t type)
-{
+void *mboot2_find_next(char *current, uint32_t type) {
 	char *header = current;
-	while ((uintptr_t)header & 7)
-		header++;
+	while ((uintptr_t)header & 7) header++;
 	struct multiboot_tag *tag = (void *)header;
-	while (1)
-	{
-		if (tag->type == 0)
-			return NULL;
-		if (tag->type == type)
-			return tag;
+	while (1) {
+		if (tag->type == 0) return NULL;
+		if (tag->type == type) return tag;
 
 		header += tag->size;
-		while ((uintptr_t)header & 7)
-			header++;
-		tag = (void *)header;
+		while ((uintptr_t)header & 7) header++;
+		tag = (void*)header;
 	}
 }
 
-void *mboot2_find_tag(void *base, uint32_t type)
-{
+void *mboot2_find_tag(void *base, uint32_t type) {
 	char *header = base;
 	header += 8;
 	return mboot2_find_next(header, type);
 }
 
-void generic_fatal(void)
-{
-	for (uint32_t i = 0; i < madt_lapics; i++)
-	{
+void generic_fatal(void) {
+	for (uint32_t i = 0; i < madt_lapics; i++) {
 		lapic_ipi(i, 0x447D);
 	}
-	asm("cli");
-	for (;;)
-		asm("hlt");
+	asm ("cli");
+	for (;;) asm ("hlt");
 }
 
-void generic_pause(void)
-{
+void generic_pause(void) {
 	__builtin_ia32_pause();
 }
 
-void kmain(void *mboot_info, uint32_t mboot_magic)
-{
-	serial_install();
+void mubsan_log(const char* fmt, ...) {
+    va_list args;
+    va_start(args, fmt);
+    vprintf(fmt, args);
+    va_end(args);
+    
+    asm volatile ("cli");
+    for (;;) asm volatile ("hlt");
+}
 
-	dprintf("%s %d.%d %s %s %s\n",
-		 __kernel_name, __kernel_version_major, __kernel_version_minor,
-		 __kernel_build_date, __kernel_build_time, __kernel_arch);
+void kmain(void *mboot_info, uint32_t mboot_magic) {
+    serial_install();
+    
+    dprintf("%s %d.%d %s %s %s\n",
+        __kernel_name, __kernel_version_major, __kernel_version_minor,
+		__kernel_build_date, __kernel_build_time, __kernel_arch);
 
 	vga_clear();
-	vga_enable_cursor();
-	printf("\n  \033[93mStarting up \033[91mnetwide (%s)\033[0m\n\n", __kernel_arch);
+    vga_enable_cursor();
+	printf("\n  \033[97mStarting up \033[98mnetwide (%s)\033[0m\n\n", __kernel_arch);
 
-	assert(mboot_magic == 0x36d76289);
-	gdt_install();
-	idt_install();
+    assert(mboot_magic == 0x36d76289);
+    gdt_install();
+    idt_install();
 	pmm_install(mboot_info);
 	vmm_install();
 	kernel_heap = heap_create();

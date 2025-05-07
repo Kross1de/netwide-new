@@ -35,10 +35,7 @@ Then, you can run `make run` and the kernel will run in QEMU.
 - [X] SMP 
 - [ ] ATAPIO/NVMe driver
 - [ ] Proper ext2 driver
-- [ ] Framebuffer support
-    - [ ] Multiboot2 framebuffer (VBE)
-    - [ ] VMware SVGAII driver
-    - [ ] Framebuffer console
+- [x] Framebuffer support
 - [ ] PS/2 drivers
     - [ ] Keyboard
     - [ ] Mouse
@@ -46,3 +43,4 @@ Then, you can run `make run` and the kernel will run in QEMU.
 - [ ] ELF loading using the MMU
 - [ ] Initial filesystem
 - [X] `unimplemented` macro
+- [ ] Symbol table

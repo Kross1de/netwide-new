@@ -7,6 +7,7 @@ Netwide is a 64-bit operating system targeting x86_64 and RISC-V
 - VGA text mode and serial driver
 - ACPI table parsing
 - LAPIC & IOAPIC support
+- HPET timer support
 - PIT support
 
 # Features on riscv

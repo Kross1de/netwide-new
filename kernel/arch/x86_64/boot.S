@@ -29,6 +29,7 @@ dd MB2_TAG_SIZE_END
 section .text.prologue
     global _start
     global gdtr
+    global stack_top
     extern kmain
     extern initial_pml
 
@@ -128,13 +129,18 @@ section .text
 
 gdt_flush:
     lgdt [gdt_descriptor]
-
     mov ax, 0x10
     mov ds, ax
     mov es, ax
     mov fs, ax
     mov gs, ax
     mov ss, ax
+    ret
+
+global flush_tss
+flush_tss:
+    mov ax, (5 * 8) | 0
+    ltr ax
     ret
 
 section .bss

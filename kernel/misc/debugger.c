@@ -39,7 +39,7 @@ void debugger_task_entry(void) {
             continue;
         }
         if (!strncmp(input, "help", 5)) {
-            dprintf("bentobox debugger (%s)\n", stdout->name);
+            dprintf("netwide debugger (%s)\n", stdout->name);
             dprintf("Built-in commands: list, int3, cls/clear, help\n");
             continue;
         }

@@ -2,7 +2,7 @@
 #include <stddef.h>
 #include <stdbool.h>
 #include <stdatomic.h>
-#include <kernel/sys/spinlock.h>
+#include <kernel/spinlock.h>
 #include <kernel/mmu.h>
 #include <kernel/panic.h>
 #include <kernel/printf.h>

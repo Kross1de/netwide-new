@@ -1,5 +1,8 @@
 {
        "files.associations": {
-              "stdarg.h": "c"
+              "stdarg.h": "c",
+              "heap.h": "c",
+              "assert.h": "c",
+              "spinlock.h": "c"
        }
 }

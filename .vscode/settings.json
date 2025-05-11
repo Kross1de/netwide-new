@@ -3,6 +3,7 @@
               "stdarg.h": "c",
               "heap.h": "c",
               "assert.h": "c",
-              "spinlock.h": "c"
+              "spinlock.h": "c",
+              "tss.h": "c"
        }
 }

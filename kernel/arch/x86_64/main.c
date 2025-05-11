@@ -19,7 +19,7 @@
 #include <kernel/assert.h>
 #include <kernel/version.h>
 #include <kernel/multiboot.h>
-#include <flanterm.h>
+#include <kernel/flanterm.h>
 
 extern void generic_startup(void);
 extern void generic_main(void);

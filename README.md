@@ -32,8 +32,8 @@ Then, you can run `make run` and the kernel will run in QEMU.
 - [X] FADT cleanup
 - [x] PCI
 - [X] SMP 
-- [ ] ATAPIO/NVMe driver
-- [ ] Proper ext2 driver
+- [ ] ATA DMA driver
+- [ ] ext2fs support
 - [x] Framebuffer support
 - [ ] PS/2 drivers
     - [ ] Keyboard
